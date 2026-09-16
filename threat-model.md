@@ -54,3 +54,28 @@ A permissive exec-policy could allow a model-generated command to run without su
 
 Control:
 Use the effective OpenClaw exec-policy as a security boundary between a proposed tool call and actual execution.
+
+## Effective Exec Policy
+
+Exec Policy
+┌────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Field          │ Value                                                                                               │
+├────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Config         │ ~/.openclaw/openclaw.json                                                                           │
+│ Approvals      │ ~/.openclaw/exec-approvals.json                                                                     │
+│ Approvals File │ missing                                                                                             │
+└────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Effective Policy
+┌────────────┬─────────────────────────────┬──────────────────────────────────────────────────┬────────────────────────┐
+│ Scope      │ Requested                   │ Host                                             │ Effective              │
+├────────────┼─────────────────────────────┼──────────────────────────────────────────────────┼────────────────────────┤
+│ tools.exec │ host=auto (OpenClaw         │ security=full (inherits requested tool           │ security=full\nask=off │
+│            │ default                     │ policy)\nask=off (inherits requested tool        │                        │
+│            │ (auto))\nsecurity=full      │ policy)\naskFallback=deny (OpenClaw default      │                        │
+│            │ (OpenClaw default           │ (deny))                                          │                        │
+│            │ (full))\nask=off (OpenClaw  │                                                  │                        │
+│            │ default (off))              │                                                  │                        │
+└────────────┴─────────────────────────────┴──────────────────────────────────────────────────┴────────────────────────┘
+
+Effective exec policy is the host approvals file intersected with requested tools.exec policy.

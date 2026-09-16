@@ -1,0 +1,20 @@
+Ubuntu:
+Distributor ID:	Ubuntu
+Description:	Ubuntu 24.04.5 LTS
+Release:	24.04
+Codename:	noble
+
+Architecture:
+x86_64
+
+Node:
+v24.18.0
+
+npm:
+11.16.0
+
+Openclaw:
+OpenClaw 2026.7.1-2 (0790d9f)
+
+Python:
+Python 3.12.3
